@@ -6,7 +6,7 @@ Luyện tập lưu trữ dữ liệu sử dụng Spring Data JPA và Hibernate.
 Có kiến thức căn bản về việc sử dụng Spring Data JPA và Hibernate.
 
 ###### Mô tả  
-Trong phần này chúng ta sẽ phát triển một ứn dụng viết blog cá nhân.
+Trong phần này chúng ta sẽ phát triển một ứng dụng viết blog cá nhân.
 
 ###### Version1: 
 
