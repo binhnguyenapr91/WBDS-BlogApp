@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="header.html::header">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>Detail Post</h1>
+<h1>Blog App <small>Detail post</small></h1>
 <a th:href="@{/post}">Back to Listing</a>
-<table>
+<table class="table table-hover">
     <thead>
     <th>ID</th>
     <th>Title</th>
@@ -26,5 +26,6 @@
     </tr>
     </tbody>
 </table>
+<div th:replace="footer.html::footer"></div>
 </body>
 </html>
