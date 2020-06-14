@@ -20,9 +20,9 @@ Trong phần này chúng ta sẽ phát triển một ứng dụng viết blog c�
 
 ###### Version2:
 -[x] Quản lý Danh mục (Category)  
--[x] Phân trang các bài viết  
--[x] Sắp xếp các bài viết theo thời gian được tạo  
--[x] Tìm kiếm bài viết  
+-[ ] Phân trang các bài viết  
+-[ ] Sắp xếp các bài viết theo thời gian được tạo  
+-[ ] Tìm kiếm bài viết  
 -[x] Hiển thị các bài viết theo từng danh mục  
 -[x] Hiển thị tên của Category khi xem một bài viết  
 ###### Kiến thức sử dụng:
@@ -42,7 +42,6 @@ Trong phần này chúng ta sẽ phát triển một ứng dụng viết blog c�
 ###### Khó khăn
 
 1. Xử lý ngày tháng
-2. Format dữ liệu nhiều bảng
-3. 
+-[x] Format dữ liệu nhiều bảng
 
 
