@@ -12,24 +12,37 @@ Trong phần này chúng ta sẽ phát triển một ứng dụng viết blog c�
 
 Ứng dụng có các chức năng sau:
 
--[x] Viết một bài blog mới
--[x] Hiển thị danh sách tóm tắt các blog
--[x] Cập nhật nội dung một blog
--[x] Xem nội dung một blog
--[x] Xoá một blog
+-[x] Viết một bài blog mới  
+-[x] Hiển thị danh sách tóm tắt các blog  
+-[x] Cập nhật nội dung một blog  
+-[x] Xem nội dung một blog  
+-[x] Xoá một blog  
 
-Kiến thức sử dụng:
+###### Version2:
+-[x] Quản lý Danh mục (Category)  
+-[x] Phân trang các bài viết  
+-[x] Sắp xếp các bài viết theo thời gian được tạo  
+-[x] Tìm kiếm bài viết  
+-[x] Hiển thị các bài viết theo từng danh mục  
+-[x] Hiển thị tên của Category khi xem một bài viết  
+###### Kiến thức sử dụng:
 
-- Spring Data JPA
+- Spring Data JPA / Repository
 - Hibernate
 - Thymeleaf
 - Repository Design Pattern
 
-Công cụ sử dụng:
+###### Công cụ sử dụng:
 
 - IDE: IntelliJ
 - DBMS: MySQL
 - WebServer: Apache Tomcat
 - Build tool: Gradle
+
+###### Khó khăn
+
+1. Xử lý ngày tháng
+2. Format dữ liệu nhiều bảng
+3. 
 
 
