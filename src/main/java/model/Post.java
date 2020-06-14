@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+
 @Entity
 @Table (name = "posts")
 public class Post {

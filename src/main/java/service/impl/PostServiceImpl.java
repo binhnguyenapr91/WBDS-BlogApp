@@ -3,6 +3,8 @@ package service.impl;
 import model.Category;
 import model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import repository.PostRepository;
 import service.PostService;
 
@@ -12,8 +14,8 @@ public class PostServiceImpl implements PostService {
     PostRepository postRepository;
 
     @Override
-    public Iterable<Post> findAll() {
-        return postRepository.findAll();
+    public Page<Post> findAll(Pageable pageable) {
+        return postRepository.findAll(pageable);
     }
 
     @Override
@@ -34,5 +36,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public Iterable<Post> findByCategory(Category category) {
         return postRepository.findByCategory(category);
+    }
+
+    @Override
+    public Page<Post> findAllByDescriptionContaining(String searchContent, Pageable pageable) {
+        return postRepository.findAllByDescriptionContaining(searchContent,pageable);
     }
 }

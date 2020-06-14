@@ -1,14 +1,17 @@
 package controller;
 
-import javafx.geometry.Pos;
 import model.Category;
 import model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.CategoryService;
 import service.PostService;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/post")
@@ -25,9 +28,14 @@ public class PostController {
     }
 
     @GetMapping("")
-    ModelAndView getAllPost() {
+    ModelAndView getAllPost(@RequestParam("searchContent") Optional<String> searchContent, Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("listing");
-        Iterable<Post> posts = postService.findAll();
+        Page<Post> posts;
+        if(searchContent.isPresent()){
+            posts = postService.findAllByDescriptionContaining(searchContent.get(),pageable);
+        }else{
+            posts = postService.findAll(pageable);
+        }
         modelAndView.addObject("posts", posts);
         return modelAndView;
     }
@@ -41,10 +49,10 @@ public class PostController {
     }
 
     @GetMapping("/delete/{id}")
-    ModelAndView deletePost(@PathVariable("id") Long id) {
+    ModelAndView deletePost(@PathVariable("id") Long id,Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("listing");
         postService.remove(id);
-        Iterable<Post> posts = postService.findAll();
+        Page<Post> posts = postService.findAll(pageable);
         modelAndView.addObject("posts", posts);
         return modelAndView;
     }

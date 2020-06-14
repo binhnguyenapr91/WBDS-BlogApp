@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -45,6 +46,9 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
+//Support pagination
+@EnableSpringDataWebSupport
+//Support Spring data repository
 @EnableJpaRepositories("repository")
 @ComponentScan("controller")
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
