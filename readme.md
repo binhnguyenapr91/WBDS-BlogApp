@@ -34,6 +34,13 @@ Trong phần này chúng ta sẽ phát triển một ứng dụng viết blog c�
 -[x] Xem danh sách các bài viết của một category  
 -[x] Xem chi tiết một bài viết  
   
+###### Version 5 - branch ajax
+Trong phần này, chúng sẽ tính hợp AJAX vào trong ứng dụng Blog thông qua 2 tính năng
+mới:
+-[x] Tìm kiếm: Người dùng nhập từ vào ô tìm kiếm, ứng dụng sẽ gửi request thông qua AJAX để
+hiển thị danh sách các bài viết phù hợp  
+-[x] Tải thêm: Là tính năng thay thế cho tính năng phân trang. Khi hiển thị danh sách bài viết, chỉ
+hiện thị 20 bài viết, sau đó, người dùng sẽ nhấn nút “Tải thêm” để xem các bài viết cũ hơn.  
 ###### Kiến thức sử dụng:
 
 - Spring Data JPA / Repository  
@@ -41,6 +48,8 @@ Trong phần này chúng ta sẽ phát triển một ứng dụng viết blog c�
 - Thymeleaf  
 - Repository Design Pattern 
 - RESTful API 
+- AJAX
+- JQuery
 
 ###### Công cụ sử dụng:  
 
