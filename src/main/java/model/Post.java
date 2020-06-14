@@ -1,7 +1,6 @@
 package model;
 
 import javax.persistence.*;
-import java.util.Date;
 @Entity
 @Table (name = "posts")
 public class Post {
@@ -11,7 +10,9 @@ public class Post {
     private String title;
     private String description;
     private String content;
-
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
     public Post(Long id, String title, String description, String content) {
         this.id = id;
         this.title = title;

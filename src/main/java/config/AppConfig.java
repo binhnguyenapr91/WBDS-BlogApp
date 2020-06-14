@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -28,20 +29,22 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import repository.CategoryRepository;
 import repository.PostRepository;
-import repository.impl.PostRepositoryImpl;
+import service.CategoryService;
 import service.PostService;
+import service.impl.CatetoryServiceImpl;
 import service.impl.PostServiceImpl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
-import java.util.logging.Filter;
 
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
+@EnableJpaRepositories("repository")
 @ComponentScan("controller")
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private ApplicationContext appContext;
@@ -52,14 +55,15 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     }
 
     //Bean to DI
-    @Bean
-    public PostRepository postRepository() {
-        return new PostRepositoryImpl();
-    }
 
     @Bean
     public PostService postService() {
         return new PostServiceImpl();
+    }
+
+    @Bean
+    public CategoryService categoryService(){
+        return new CatetoryServiceImpl();
     }
 
     //Thymeleaf Config - UTF-8

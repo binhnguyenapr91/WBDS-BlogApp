@@ -1,7 +1,8 @@
 package repository;
 
 import model.Post;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface PostRepository extends Repository<Post> {
+public interface PostRepository extends PagingAndSortingRepository<Post,Long> {
 
 }

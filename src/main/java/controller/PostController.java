@@ -1,14 +1,11 @@
 package controller;
 
-import javafx.geometry.Pos;
 import model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.PostService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/post")
@@ -19,7 +16,7 @@ public class PostController {
     @GetMapping("")
     ModelAndView getAllPost() {
         ModelAndView modelAndView = new ModelAndView("listing");
-        List<Post> posts = postService.findAll();
+        Iterable<Post> posts = postService.findAll();
         modelAndView.addObject("posts", posts);
         return modelAndView;
     }
@@ -36,7 +33,7 @@ public class PostController {
     ModelAndView deletePost(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("listing");
         postService.remove(id);
-        List<Post> posts = postService.findAll();
+        Iterable<Post> posts = postService.findAll();
         modelAndView.addObject("posts", posts);
         return modelAndView;
     }
