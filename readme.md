@@ -8,7 +8,7 @@ Có kiến thức căn bản về việc sử dụng Spring Data JPA và Hiberna
 ###### Mô tả  
 Trong phần này chúng ta sẽ phát triển một ứng dụng viết blog cá nhân.
 
-###### Version1: 
+###### Version1 - branch master: 
 
 Ứng dụng có các chức năng sau:
 
@@ -18,13 +18,16 @@ Trong phần này chúng ta sẽ phát triển một ứng dụng viết blog c�
 -[x] Xem nội dung một blog  
 -[x] Xoá một blog  
 
-###### Version2:
+###### Version2 - branch spring-data-repository:
 -[x] Quản lý Danh mục (Category)  
+-[x] Hiển thị các bài viết theo từng danh mục  
+-[x] Hiển thị tên của Category khi xem một bài viết  
+
+###### Version3 - branch paging-sorting-seaching:
 -[x] Phân trang các bài viết  
 -[x] Sắp xếp các bài viết theo thời gian được tạo  
 -[x] Tìm kiếm bài viết  
--[x] Hiển thị các bài viết theo từng danh mục  
--[x] Hiển thị tên của Category khi xem một bài viết  
+  
 ###### Kiến thức sử dụng:
 
 - Spring Data JPA / Repository
@@ -43,5 +46,6 @@ Trong phần này chúng ta sẽ phát triển một ứng dụng viết blog c�
 
 -[ ] Xử lý ngày tháng  
 -[x] Format dữ liệu nhiều bảng
+-[ ] Sắp xếp bài viết theo ngày
 
 
