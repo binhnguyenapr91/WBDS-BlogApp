@@ -27,25 +27,32 @@ Trong phần này chúng ta sẽ phát triển một ứng dụng viết blog c�
 -[x] Phân trang các bài viết  
 -[x] Sắp xếp các bài viết theo thời gian được tạo  
 -[x] Tìm kiếm bài viết  
+
+###### Version 4 - branch RESTful-API
+-[x] Xem danh sách các category  
+-[x] Xem danh sách các bài viết  
+-[x] Xem danh sách các bài viết của một category  
+-[x] Xem chi tiết một bài viết  
   
 ###### Kiến thức sử dụng:
 
-- Spring Data JPA / Repository
-- Hibernate
-- Thymeleaf
-- Repository Design Pattern
+- Spring Data JPA / Repository  
+- Hibernate  
+- Thymeleaf  
+- Repository Design Pattern 
+- RESTful API 
 
-###### Công cụ sử dụng:
+###### Công cụ sử dụng:  
 
-- IDE: IntelliJ
-- DBMS: MySQL
-- WebServer: Apache Tomcat
-- Build tool: Gradle
+- IDE: IntelliJ  
+- DBMS: MySQL  
+- WebServer: Apache Tomcat  
+- Build tool: Gradle  
 
 ###### Khó khăn
 
 -[ ] Xử lý ngày tháng  
--[x] Format dữ liệu nhiều bảng
+-[x] Format dữ liệu nhiều bảng  
 -[ ] Sắp xếp bài viết theo ngày
 
 

@@ -42,4 +42,9 @@ public class PostServiceImpl implements PostService {
     public Page<Post> findAllByDescriptionContaining(String searchContent, Pageable pageable) {
         return postRepository.findAllByDescriptionContaining(searchContent,pageable);
     }
+
+    @Override
+    public Iterable<Post> findAll() {
+        return postRepository.findAll();
+    }
 }
