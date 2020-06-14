@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header.html::header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Blog App <small>View category: <span th:text="${category.name}"></span></small></h1>
+<a href="#" th:href="@{/post/create}">Create new post</a>
+<a href="#" th:href="@{/category}">Back to category listing</a>
+<table class="table table-hover">
+    <thead>
+    <th>ID</th>
+    <th>Tiêu đề</th>
+    <th>Danh mục</th>
+    <th>Mô tả</th>
+    <th>Nội dung</th>
+    <th colspan="3">Functions</th>
+    </thead>
+    <tbody>
+    <tr th:each="post:${posts}">
+        <td th:text="${post.getId()}"></td>
+        <td th:text="${post.getTitle()}"></td>
+        <td th:text="${post.category.name}"></td>
+        <td th:text="${post.getDescription()}"></td>
+        <td th:text="${post.getContent()}"></td>
+        <td><a th:href="@{/post/view/{id}(id = ${post.getId()})}">Detail</a></td>
+        <td><a th:href="@{/post/delete/{id}(id = ${post.getId()})}">Delete</a></td>
+        <td><a th:href="@{/post/update/{id}(id = ${post.getId()})}">Update</a></td>
+    </tr>
+    </tbody>
+</table>
+<div th:replace="footer.html::footer"></div>
+</body>
+</html>

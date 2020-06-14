@@ -1,17 +1,22 @@
 package controller;
 
 import model.Category;
+import model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.CategoryService;
+import service.PostService;
 
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    PostService postService;
 
     @GetMapping("")
     ModelAndView getAllCategory() {
@@ -60,5 +65,16 @@ public class CategoryController {
         modelAndView.addObject("category",category);
         modelAndView.addObject("message","Update category successfully!");
         return modelAndView;
+    }
+
+    @GetMapping("/view/{id}")
+    ModelAndView viewCategory(@PathVariable("id") Long id){
+        Category category = categoryService.findById(id);
+        Iterable<Post> posts = postService.findByCategory(category);
+        ModelAndView modelAndView = new ModelAndView("cateDetail");
+        modelAndView.addObject("category",category);
+        modelAndView.addObject("posts",posts);
+        return modelAndView;
+
     }
 }

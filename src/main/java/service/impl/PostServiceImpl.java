@@ -1,5 +1,6 @@
 package service.impl;
 
+import model.Category;
 import model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import repository.PostRepository;
@@ -28,5 +29,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public void remove(Long id) {
         postRepository.delete(id);
+    }
+
+    @Override
+    public Iterable<Post> findByCategory(Category category) {
+        return postRepository.findByCategory(category);
     }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.geometry.Pos;
 import model.Category;
 import model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
