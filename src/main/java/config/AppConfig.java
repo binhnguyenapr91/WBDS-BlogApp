@@ -1,5 +1,6 @@
 package config;
 
+import formatter.CategoryFormatter;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -29,8 +31,7 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
-import repository.CategoryRepository;
-import repository.PostRepository;
+
 import service.CategoryService;
 import service.PostService;
 import service.impl.CatetoryServiceImpl;
@@ -136,6 +137,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }
+
     // Registration Static resource
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -144,7 +146,9 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/");
     }
 
-
-
-
+    // Registration Formatter
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new CategoryFormatter(appContext.getBean(CategoryService.class)));
+    }
 }

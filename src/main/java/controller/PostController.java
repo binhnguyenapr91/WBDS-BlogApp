@@ -1,10 +1,12 @@
 package controller;
 
+import model.Category;
 import model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import service.CategoryService;
 import service.PostService;
 
 @Controller
@@ -12,6 +14,14 @@ import service.PostService;
 public class PostController {
     @Autowired
     PostService postService;
+
+    @Autowired
+    CategoryService categoryService;
+
+    @ModelAttribute("categories")
+    Iterable<Category> categories(){
+        return categoryService.findAll();
+    }
 
     @GetMapping("")
     ModelAndView getAllPost() {

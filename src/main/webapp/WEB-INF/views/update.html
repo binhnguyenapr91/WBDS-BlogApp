@@ -14,6 +14,7 @@
     <table class="table table-hover">
         <thead>
         <th>Title</th>
+        <th>Cattegory</th>
         <th>Description</th>
         <th>Content</th>
         </thead>
@@ -21,6 +22,11 @@
         <tr>
             <input type="hidden" th:field="*{id}">
             <td><input type="text" th:field="*{title}"></td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="categorie:${categories}" th:value="${categorie.id}" th:text="${categorie.name}"></option>
+                </select>
+            </td>
             <td><input type="text" th:field="*{description}"></td>
             <td><input type="text" th:field="*{content}"></td>
         </tr>

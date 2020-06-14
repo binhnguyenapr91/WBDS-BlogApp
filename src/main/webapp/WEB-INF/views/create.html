@@ -16,12 +16,18 @@
         <th>Title</th>
         <th>Description</th>
         <th>Content</th>
+        <th>Category</th>
         </thead>
         <tbody>
         <tr>
             <td><input type="text" th:field="*{title}"></td>
             <td><input type="text" th:field="*{description}"></td>
             <td><input type="text" th:field="*{content}"></td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td colspan="4"><input type="submit" value="Create"></td>

@@ -11,6 +11,7 @@
     <thead>
     <th>ID</th>
     <th>Tiêu đề</th>
+    <th>Danh mục</th>
     <th>Mô tả</th>
     <th>Nội dung</th>
     <th colspan="3">Functions</th>
@@ -19,6 +20,7 @@
     <tr th:each="post:${posts}">
         <td th:text="${post.getId()}"></td>
         <td th:text="${post.getTitle()}"></td>
+        <td th:text="${post.category.name}"></td>
         <td th:text="${post.getDescription()}"></td>
         <td th:text="${post.getContent()}"></td>
         <td><a th:href="@{/post/view/{id}(id = ${post.getId()})}">Detail</a></td>

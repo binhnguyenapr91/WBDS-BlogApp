@@ -23,6 +23,22 @@ public class Post {
     public Post() {
     }
 
+    public Post(Long id, String title, String description, String content, Category category) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.content = content;
+        this.category = category;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Long getId() {
         return id;
     }
