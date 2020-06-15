@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-reboot.css}">
+    <script th:src="@{/js/bootstrap.bundle.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($) {
-                $('#searchByDesc').submit(function(event) {
-                    searchByDesc();
-                    event.preventDefault();
+        jQuery(document).ready(function ($) {
+            $('#searchByDesc').submit(function (event) {
+                searchByDesc();
+                event.preventDefault();
             });
-        });
-        function searchByDesc(){
+        })
+
+        function searchByDesc() {
             let search = {};
             search["searchContent"] = $('#searchContent').val();
             $.ajax({
@@ -19,32 +25,55 @@
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                type:"GET",
-                url:"/post/api/searchByDesc?"+"searchContent="+$('#searchContent').val(),
-                success:function(data){
-                  console.log("SUCCESS:" +data);
-                  display(data);
+                type: "GET",
+                url: "/post/api/searchByDesc?" + "searchContent=" + $('#searchContent').val(),
+                success: function (data) {
+                    console.log("SUCCESS:" + data);
+                    display(data);
                 },
-                error : function(e) {
+                error: function (e) {
                     console.log("ERROR: ", e);
                     display(e);
                 }
             });
         }
-        function display(data){
-            var json = "<h4>AJAX Response</h4>"
-                + JSON.stringify(data, null, 4);
+
+        function display(data) {
+            let json = "";
+            json += "<table class=\"table table_hover\">"
+            json += "<thead>"
+            json += "<th>ID</th>"
+            json += "<th>Title</th>"
+            json += "<th>Category Name</th>"
+            json += "<th>Content</th>"
+            json += "<th>Description</th>"
+            json += "</thead>"
+            json += "<tbody>"
+            $.each(data, function (index) {
+                json += "<tr>"
+                json += "<td>" + data[index].id + "</td>"
+                json += "<td>" + data[index].title + "</td>"
+                json += "<td>" + data[index].category.name + "</td>"
+                json += "<td>" + data[index].content + "</td>"
+                json += "<td>" + data[index].description + "</td>"
+                json += "</tr>"
+            });
+            json += "</tbody>"
+            json += "</table>"
             $('#result').html(json);
         }
     </script>
 </head>
 <body>
+<h1 th:utext="#{main.title}"></h1>
+<h3 th:text="#{post.searching}"></h3></br>
+<a href="#" th:href="@{/post/create}"><span th:text="#{main.createPostLinkText}"></span></a></br>
 <form id="searchByDesc">
     Search by description:
     <input name="searchContent" type="text" id="searchContent">
     <input type="submit" value="Search" id="btn-search">
 </form>
-
 <div id="result"></div>
+<div th:replace="footer.html::footer"></div>
 </body>
 </html>

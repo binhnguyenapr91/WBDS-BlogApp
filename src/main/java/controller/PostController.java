@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import service.CategoryService;
 import service.PostService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -110,12 +111,12 @@ public class PostController {
     }
 
     @RequestMapping(value = "/api/searchByDesc", method = RequestMethod.GET)
-    public ResponseEntity<Page<Post>> searchByDesc(@RequestParam("searchContent") Optional<String> searchContent, Pageable pageable) {
-        Page<Post> posts;
+    public ResponseEntity<List<Post>> searchByDesc(@RequestParam("searchContent") Optional<String> searchContent, Pageable pageable) {
+        List<Post> posts;
         if (searchContent.isPresent()) {
-            posts = postService.findAllByDescriptionContaining(searchContent.get(), pageable);
+            posts = postService.findAllByDescriptionContaining(searchContent.get(), pageable).getContent();
         } else {
-            posts = postService.findAll(pageable);
+            posts = postService.findAll(pageable).getContent();
         }
         if (posts == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

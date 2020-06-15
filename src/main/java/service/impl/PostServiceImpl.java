@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import repository.PostRepository;
 import service.PostService;
 
+import java.util.List;
+
 public class PostServiceImpl implements PostService {
 
     @Autowired
