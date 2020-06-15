@@ -4,22 +4,25 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-<h1>Blog App <small>Danh sách bài viết</small></h1>
-<a href="#" th:href="@{/post/create}">Tạo post mới</a>
+<h1 th:utext="#{main.title}"></h1>
+<h3 th:text="#{post.listing}"></h3></br>
+<a href="#" th:href="@{/post/create}"><span th:text="#{main.createPostLinkText}"></span></a></br>
+<a href="?lang=vn">Vietnamese</a>|<a href="?lang=en">English</a>
 <form>
-    Search by description:
+    <span th:text="#{main.searchTitle}"></span>
     <input name="searchContent" type="text">
     <input type="submit" value="Search">
 </form>
 <table class="table table-hover">
     <thead>
-    <th>ID</th>
-    <th>Tiêu đề</th>
-    <th>Danh mục</th>
-    <th>Mô tả</th>
-    <th>Nội dung</th>
-    <th colspan="3">Functions</th>
+    <th th:text="#{postTable.id}"></th>
+    <th th:text="#{postTable.title}"></th>
+    <th th:text="#{postTable.category}"></th>
+    <th th:text="#{postTable.description}"></th>
+    <th th:text="#{postTable.content}"></th>
+    <th th:text="#{postTable.function}"colspan="3"></th>
     </thead>
     <tbody>
     <tr th:each="post:${posts}">
@@ -28,9 +31,9 @@
         <td th:text="${post.category.name}"></td>
         <td th:text="${post.getDescription()}"></td>
         <td th:text="${post.getContent()}"></td>
-        <td><a th:href="@{/post/view/{id}(id = ${post.getId()})}">Detail</a></td>
-        <td><a th:href="@{/post/delete/{id}(id = ${post.getId()})}">Delete</a></td>
-        <td><a th:href="@{/post/update/{id}(id = ${post.getId()})}">Update</a></td>
+        <td><a th:href="@{/post/view/{id}(id = ${post.getId()})}" th:text="#{actionLink.detail}"></a></td>
+        <td><a th:href="@{/post/delete/{id}(id = ${post.getId()})}" th:text="#{actionLink.delete}"></a></td>
+        <td><a th:href="@{/post/update/{id}(id = ${post.getId()})}" th:text="#{actionLink.update}"></a></td>
     </tr>
     </tbody>
 </table>

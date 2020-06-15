@@ -1,13 +1,11 @@
 package controller;
 
-import javafx.geometry.Pos;
 import model.Category;
 import model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import service.CategoryService;
 import service.PostService;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -29,7 +26,7 @@ public class PostController {
     CategoryService categoryService;
 
     @ModelAttribute("categories")
-    Iterable<Category> categories(){
+    Iterable<Category> categories() {
         return categoryService.findAll();
     }
 
@@ -37,20 +34,18 @@ public class PostController {
     ModelAndView getAllPost(@RequestParam("searchContent") Optional<String> searchContent, Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("listing");
         Page<Post> posts;
-        if(searchContent.isPresent()){
-            posts = postService.findAllByDescriptionContaining(searchContent.get(),pageable);
-        }else{
+        if (searchContent.isPresent()) {
+            posts = postService.findAllByDescriptionContaining(searchContent.get(), pageable);
+        } else {
             posts = postService.findAll(pageable);
         }
         modelAndView.addObject("posts", posts);
         return modelAndView;
     }
-    @RequestMapping(value = "/api/postListing", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<Post>> apiGetPosts(){
-        Iterable<Post> posts = postService.findAll();
-        if(posts==null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } return new ResponseEntity<>(posts,HttpStatus.OK);
+    @GetMapping("/search")
+    ModelAndView showSearchForm(){
+        ModelAndView modelAndView = new ModelAndView("search");
+        return modelAndView;
     }
 
     @GetMapping("/view/{id}")
@@ -61,15 +56,8 @@ public class PostController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/api/viewPost/{id}")
-    public ResponseEntity<Post> apiViewPost(@PathVariable("id") Long id){
-        Post posts = postService.findById(id);
-        if(posts == null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } return new ResponseEntity<>(posts,HttpStatus.OK);
-    }
     @GetMapping("/delete/{id}")
-    ModelAndView deletePost(@PathVariable("id") Long id,Pageable pageable) {
+    ModelAndView deletePost(@PathVariable("id") Long id, Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("listing");
         postService.remove(id);
         Page<Post> posts = postService.findAll(pageable);
@@ -109,5 +97,38 @@ public class PostController {
         modelAndView.addObject("message", "Update post successfully!");
         return modelAndView;
 
+    }
+
+    // API
+    @RequestMapping(value = "/api/viewPost/{id}")
+    public ResponseEntity<Post> apiViewPost(@PathVariable("id") Long id) {
+        Post posts = postService.findById(id);
+        if (posts == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/searchByDesc", method = RequestMethod.GET)
+    public ResponseEntity<Page<Post>> searchByDesc(@RequestParam("searchContent") Optional<String> searchContent, Pageable pageable) {
+        Page<Post> posts;
+        if (searchContent.isPresent()) {
+            posts = postService.findAllByDescriptionContaining(searchContent.get(), pageable);
+        } else {
+            posts = postService.findAll(pageable);
+        }
+        if (posts == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/api/postListing", method = RequestMethod.GET)
+    public ResponseEntity<Iterable<Post>> apiGetPosts() {
+        Iterable<Post> posts = postService.findAll();
+        if (posts == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 }

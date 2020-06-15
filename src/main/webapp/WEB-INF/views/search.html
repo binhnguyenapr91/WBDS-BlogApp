@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+                $('#searchByDesc').submit(function(event) {
+                    searchByDesc();
+                    event.preventDefault();
+            });
+        });
+        function searchByDesc(){
+            let search = {};
+            search["searchContent"] = $('#searchContent').val();
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type:"GET",
+                url:"/post/api/searchByDesc?"+"searchContent="+$('#searchContent').val(),
+                success:function(data){
+                  console.log("SUCCESS:" +data);
+                  display(data);
+                },
+                error : function(e) {
+                    console.log("ERROR: ", e);
+                    display(e);
+                }
+            });
+        }
+        function display(data){
+            var json = "<h4>AJAX Response</h4>"
+                + JSON.stringify(data, null, 4);
+            $('#result').html(json);
+        }
+    </script>
+</head>
+<body>
+<form id="searchByDesc">
+    Search by description:
+    <input name="searchContent" type="text" id="searchContent">
+    <input type="submit" value="Search" id="btn-search">
+</form>
+
+<div id="result"></div>
+</body>
+</html>

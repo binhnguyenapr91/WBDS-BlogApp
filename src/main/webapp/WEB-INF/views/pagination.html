@@ -6,9 +6,9 @@
 </head>
 <body>
 <div th:fragment="pagination">
-    <a th:href="@{'/post'(page=${posts.number -1})}" th:if="${posts.hasPrevious()}">Previous</a>
+    <a th:href="@{'/post'(page=${posts.number -1})}" th:if="${posts.hasPrevious()}" th:text="#{paginationlink.Previous}">Previous</a>
     <span th:text="${posts.number +1}"></span>/<span th:text="${posts.totalPages}"></span>
-    <a th:href="@{'/post'(page=${posts.number +1})}" th:if="${posts.hasNext()}">Next</a>
+    <a th:href="@{'/post'(page=${posts.number +1})}" th:if="${posts.hasNext()}" th:text="#{paginationlink.Next}">Next</a>
 </div>
 </body>
 </html>

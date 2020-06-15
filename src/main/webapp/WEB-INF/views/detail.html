@@ -5,16 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Blog App <small>Detail post</small></h1>
-<a th:href="@{/post}">Back to Listing</a>
+<h1 th:text="#{main.title}"></h1>
+<h3 th:text="#{post.detail}"></h3>
+<a th:href="@{/post}" th:text="#{main.backToListing}">Back to Listing</a>
 <table class="table table-hover">
     <thead>
-    <th>ID</th>
-    <th>Title</th>
-    <th>Category</th>
-    <th>Description</th>
-    <th>Content</th>
-    <th colspan="2">Functions</th>
+    <th th:text="#{postTable.id}">ID</th>
+    <th th:text="#{postTable.title}">Title</th>
+    <th th:text="#{postTable.category}">Category</th>
+    <th th:text="#{postTable.description}">Description</th>
+    <th th:text="#{postTable.content}">Content</th>
+    <th th:text="#{postTable.function}" colspan="2">Functions</th>
     </thead>
     <tbody>
     <tr>
@@ -23,8 +24,8 @@
         <td th:text="${post.category.name}"></td>
         <td th:text="${post.description}"></td>
         <td th:text="${post.content}"></td>
-        <td><a th:href="@{/post/delete/{id}(id = ${post.getId()})}">Delete</a></td>
-        <td><a th:href="@{/post/update/{id}(id = ${post.getId()})}">Update</a></td>
+        <td><a th:href="@{/post/delete/{id}(id = ${post.getId()})}" th:text="#{actionLink.delete}">Delete</a></td>
+        <td><a th:href="@{/post/update/{id}(id = ${post.getId()})}" th:text="#{actionLink.update}">Update</a></td>
     </tr>
     </tbody>
 </table>
