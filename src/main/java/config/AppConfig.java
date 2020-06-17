@@ -58,6 +58,7 @@ import java.util.Properties;
 //Support Spring data repository
 @EnableJpaRepositories("repository")
 @ComponentScan("controller")
+
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private ApplicationContext appContext;
 
@@ -182,4 +183,6 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new CategoryFormatter(appContext.getBean(CategoryService.class)));
     }
+
+    //Security
 }

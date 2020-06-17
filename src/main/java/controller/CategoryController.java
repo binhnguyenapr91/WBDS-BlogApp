@@ -28,7 +28,7 @@ public class CategoryController {
         return modelAndView;
     }
 
-    @GetMapping("/create")
+    @GetMapping("/cateCreate")
     ModelAndView showCreateForm() {
         ModelAndView modelAndView = new ModelAndView("cateCreate");
         modelAndView.addObject("category", new Category());

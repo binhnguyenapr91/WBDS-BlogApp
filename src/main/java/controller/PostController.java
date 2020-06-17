@@ -66,17 +66,17 @@ public class PostController {
         return modelAndView;
     }
 
-    @GetMapping("/create")
+    @GetMapping("/createPost")
     ModelAndView showCreateForm() {
-        ModelAndView modelAndView = new ModelAndView("create");
+        ModelAndView modelAndView = new ModelAndView("createPost");
         modelAndView.addObject("current_post", new Post());
         return modelAndView;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/createPost")
     ModelAndView createPost(@ModelAttribute("current_post") Post post) {
         postService.save(post);
-        ModelAndView modelAndView = new ModelAndView("create");
+        ModelAndView modelAndView = new ModelAndView("createPost");
         modelAndView.addObject("post", new Post());
         modelAndView.addObject("message", "Create post successfully!");
         return modelAndView;
